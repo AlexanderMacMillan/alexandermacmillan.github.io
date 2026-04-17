@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alexander MacMillan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --surface: #141414;
+      --border: #222;
+      --accent: #c8a96e;
+      --accent-dim: rgba(200,169,110,0.12);
+      --text: #e8e2d9;
+      --muted: #888;
+      --card: #171717;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 4rem;
+      background: rgba(13,13,13,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 4rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(200,169,110,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,169,110,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+    .hero-glow {
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,169,110,0.08) 0%, transparent 70%);
+      top: 10%; right: -10%;
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 0.78rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 32px; height: 1px;
+      background: var(--accent);
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      margin-bottom: 2rem;
+    }
+    h1 span { color: var(--accent); }
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 3rem;
+      line-height: 1.8;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.8rem;
+      border-radius: 3px;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-family: 'DM Sans', sans-serif;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #0d0d0d;
+      font-weight: 500;
+      border: 1px solid var(--accent);
+    }
+    .btn-primary:hover { background: #d4b87a; }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+    .hero-contact-row {
+      margin-top: 4rem;
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .hero-contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .hero-contact-item svg { color: var(--accent); }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 4rem; }
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 24px; height: 1px;
+      background: var(--accent);
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 3rem;
+      line-height: 1.15;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--surface); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .about-text p { color: var(--muted); margin-bottom: 1.2rem; font-size: 1rem; }
+    .about-text p strong { color: var(--text); font-weight: 500; }
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .stat-card {
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--card);
+    }
+    .stat-card .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .stat-card .label { font-size: 0.8rem; color: var(--muted); margin-top: 0.3rem; }
+
+    /* ── EDUCATION ── */
+    .edu-item {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 2rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .edu-item:last-child { border-bottom: none; }
+    .edu-year { color: var(--muted); font-size: 0.85rem; padding-top: 0.25rem; }
+    .edu-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      margin-bottom: 0.3rem;
+    }
+    .edu-body .inst { color: var(--accent); font-size: 0.9rem; margin-bottom: 0.8rem; }
+    .edu-body p { color: var(--muted); font-size: 0.9rem; }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--surface); }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .skill-group {
+      padding: 2rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--card);
+      transition: border-color 0.2s;
+    }
+    .skill-group:hover { border-color: var(--accent); }
+    .skill-group h4 {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tag {
+      padding: 0.3rem 0.8rem;
+      background: var(--accent-dim);
+      border: 1px solid rgba(200,169,110,0.2);
+      border-radius: 2px;
+      font-size: 0.8rem;
+      color: var(--text);
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2rem;
+      background: var(--card);
+      transition: border-color 0.25s, transform 0.25s;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .project-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+    .project-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .project-type {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .project-year { font-size: 0.8rem; color: var(--muted); }
+    .project-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+    }
+    .project-card p { font-size: 0.88rem; color: var(--muted); flex: 1; }
+    .project-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: auto; }
+    .stack-tag {
+      padding: 0.2rem 0.6rem;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    /* ── EXPERIENCE ── */
+    #experience { background: var(--surface); }
+    .exp-list { display: flex; flex-direction: column; gap: 0; }
+    .exp-item {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 2rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .exp-item:last-child { border-bottom: none; }
+    .exp-left .period { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.3rem; }
+    .exp-left .org { font-size: 0.82rem; color: var(--accent); }
+    .exp-right h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      margin-bottom: 0.6rem;
+    }
+    .exp-right p { font-size: 0.88rem; color: var(--muted); }
+
+    /* ── AWARDS ── */
+    .awards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .award-card {
+      padding: 2rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--card);
+    }
+    .award-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .award-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 0.4rem; }
+    .award-card p { font-size: 0.85rem; color: var(--muted); }
+    .award-card .award-year { font-size: 0.75rem; color: var(--accent); margin-top: 0.8rem; letter-spacing: 0.12em; }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--surface);
+      text-align: center;
+    }
+    .contact-inner { max-width: 560px; margin: 0 auto; }
+    .contact-inner p { color: var(--muted); margin-bottom: 2.5rem; }
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem 4rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      section, #hero { padding: 4rem 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .edu-item, .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">AM</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-eyebrow">Computer Science · University of Edinburgh</div>
+  <h1>Alexander<br><span>MacMillan</span></h1>
+  <p class="hero-sub">Software engineer, systems programmer, and officer cadet — building things that work from the kernel up.</p>
+  <div class="hero-cta">
+    <a href="#projects" class="btn btn-primary">View Projects</a>
+    <a href="#contact" class="btn btn-outline">Get in Touch</a>
+  </div>
+  <div class="hero-contact-row">
+    <div class="hero-contact-item">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+      macmillanalexander75@gmail.com
+    </div>
+    <div class="hero-contact-item">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 11.5a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3 .84h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z"/></svg>
+      07485 233220
+    </div>
+    <div class="hero-contact-item">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Edinburgh, Scotland
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About</div>
+  <div class="about-grid">
+    <div class="about-text">
+      <h2>A builder at<br>every level</h2>
+      <p>I'm a second-year Computer Science student at the University of Edinburgh with a passion for low-level systems, data engineering, and building reliable software.</p>
+      <p>My work spans from <strong>Linux kernel modifications</strong> and QEMU-based OS development to <strong>REST APIs</strong>, data science pipelines, and numerical simulations — I like understanding how things work from the ground up.</p>
+      <p>Outside of code, I'm an <strong>Officer Cadet</strong> with the City of Edinburgh OTC, a Gold Duke of Edinburgh holder, and a qualified yacht crew member.</p>
+    </div>
+    <div>
+      <div class="about-stats">
+        <div class="stat-card"><div class="num">3</div><div class="label">University Projects</div></div>
+        <div class="stat-card"><div class="num">7+</div><div class="label">Languages & Frameworks</div></div>
+        <div class="stat-card"><div class="num">DofE</div><div class="label">Gold Award Holder</div></div>
+        <div class="stat-card"><div class="num">RYA</div><div class="label">Competent Crew Qualified</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-label">Education</div>
+  <h2>Academic Background</h2>
+  <div class="edu-item fade-up">
+    <div class="edu-year">2023 – Present</div>
+    <div class="edu-body">
+      <h3>BSc Computer Science</h3>
+      <div class="inst">University of Edinburgh</div>
+      <p>Coursework spanning Operating Systems, Computer Networks, Data Science, and Software Engineering. Active work on kernel development (Linux v6.12), networking protocol implementations (Stop-and-Wait, Go-Back-N, Selective Repeat), and REST API microservices.</p>
+    </div>
+  </div>
+  <div class="edu-item fade-up">
+    <div class="edu-year">2017 – 2023</div>
+    <div class="edu-body">
+      <h3>Scottish Advanced Highers &amp; Highers</h3>
+      <div class="inst">Belmont House School, Scotland</div>
+      <p>Advanced Highers: Mathematics (A), Physics (A), Chemistry (B). Highers: 5 A grades including Mathematics, Physics, Chemistry, English, and Business Management.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">Skills</div>
+  <h2>Technical Toolkit</h2>
+  <div class="skills-grid">
+    <div class="skill-group fade-up">
+      <h4>Languages</h4>
+      <div class="skill-tags">
+        <span class="tag">Python</span>
+        <span class="tag">Java</span>
+        <span class="tag">C</span>
+        <span class="tag">Kotlin</span>
+        <span class="tag">Haskell</span>
+        <span class="tag">MIPS Assembly</span>
+      </div>
+    </div>
+    <div class="skill-group fade-up">
+      <h4>Frameworks & Tools</h4>
+      <div class="skill-tags">
+        <span class="tag">Spring Boot</span>
+        <span class="tag">JUnit</span>
+        <span class="tag">AssertJ</span>
+        <span class="tag">Maven</span>
+        <span class="tag">Docker</span>
+        <span class="tag">Git</span>
+        <span class="tag">QEMU</span>
+      </div>
+    </div>
+    <div class="skill-group fade-up">
+      <h4>Data Science</h4>
+      <div class="skill-tags">
+        <span class="tag">Pandas</span>
+        <span class="tag">NumPy</span>
+        <span class="tag">Matplotlib</span>
+        <span class="tag">Time Series</span>
+        <span class="tag">Statistical Modelling</span>
+      </div>
+    </div>
+    <div class="skill-group fade-up">
+      <h4>Concepts</h4>
+      <div class="skill-tags">
+        <span class="tag">OOP</span>
+        <span class="tag">Functional Programming</span>
+        <span class="tag">REST APIs</span>
+        <span class="tag">OS/Kernel Dev</span>
+        <span class="tag">Networking Protocols</span>
+        <span class="tag">Numerical Methods</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Projects</div>
+  <h2>Selected Work</h2>
+  <div class="projects-grid">
+    <div class="project-card fade-up">
+      <div class="project-meta">
+        <span class="project-type">Data Science</span>
+        <span class="project-year">2024</span>
+      </div>
+      <h3>Renewable Energy Impact Analysis</h3>
+      <p>Analysed 6,270+ energy records from Appleton Tower to evaluate carbon reduction strategies. Built data pipelines to process half-hourly electricity, heat, and solar generation data — revealing solar panels offset only 4.49% of peak monthly demand despite 26kW capacity.</p>
+      <div class="project-stack">
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">Pandas</span>
+        <span class="stack-tag">Matplotlib</span>
+        <span class="stack-tag">Time Series</span>
+        <span class="stack-tag">Statistical Modelling</span>
+      </div>
+    </div>
+    <div class="project-card fade-up">
+      <div class="project-meta">
+        <span class="project-type">Backend / API</span>
+        <span class="project-year">2024</span>
+      </div>
+      <h3>Geospatial REST API Service</h3>
+      <p>Production-ready microservice in Spring Boot featuring comprehensive geospatial calculations, full validation, and 85%+ integration test coverage via TestRestTemplate and AssertJ. Includes Spring Actuator for live health monitoring.</p>
+      <div class="project-stack">
+        <span class="stack-tag">Java</span>
+        <span class="stack-tag">Spring Boot</span>
+        <span class="stack-tag">REST API</span>
+        <span class="stack-tag">Maven</span>
+        <span class="stack-tag">JUnit</span>
+      </div>
+    </div>
+    <div class="project-card fade-up">
+      <div class="project-meta">
+        <span class="project-type">Simulation</span>
+        <span class="project-year">2024</span>
+      </div>
+      <h3>N-Body Solar System Simulation</h3>
+      <p>Implemented three numerical integration algorithms with O(n²) gravitational force calculations. Object-oriented architecture manages full state vectors and acceleration histories, with real-time Matplotlib animation using frame-skipping for performance.</p>
+      <div class="project-stack">
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">NumPy</span>
+        <span class="stack-tag">Matplotlib</span>
+        <span class="stack-tag">OOP</span>
+        <span class="stack-tag">Algorithms</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Experience</div>
+  <h2>Work & Volunteering</h2>
+  <div class="exp-list">
+    <div class="exp-item fade-up">
+      <div class="exp-left">
+        <div class="period">2023 – Present</div>
+        <div class="org">City of Edinburgh OTC</div>
+      </div>
+      <div class="exp-right">
+        <h3>Officer Cadet</h3>
+        <p>Intensive leadership training as part of the British Army's flagship university officer development programme. Field exercises, strategic planning under pressure, and structured personal development.</p>
+      </div>
+    </div>
+    <div class="exp-item fade-up">
+      <div class="exp-left">
+        <div class="period">Summer 2023</div>
+        <div class="org">Akari Solutions</div>
+      </div>
+      <div class="exp-right">
+        <h3>Work Experience — Microsoft Gold Partner</h3>
+        <p>One-week placement gaining insight into automation and cybersecurity consulting practices at a Microsoft Gold Partner firm.</p>
+      </div>
+    </div>
+    <div class="exp-item fade-up">
+      <div class="exp-left">
+        <div class="period">2020 – 2023</div>
+        <div class="org">McKellars of Ayrshire</div>
+      </div>
+      <div class="exp-right">
+        <h3>Fencing Contractor</h3>
+        <p>Managed end-to-end installation projects for private and public sector clients, adapting plans to on-site challenges and developing strong problem-solving skills through physically demanding work.</p>
+      </div>
+    </div>
+    <div class="exp-item fade-up">
+      <div class="exp-left">
+        <div class="period">2022 – 2023</div>
+        <div class="org">Tsukure Hub</div>
+      </div>
+      <div class="exp-right">
+        <h3>Radio Presenter &amp; Producer</h3>
+        <p>Produced and hosted a weekly 3-hour radio show with mentorship from a former BBC producer. Developed content creation, scripting, and live public speaking skills.</p>
+      </div>
+    </div>
+    <div class="exp-item fade-up">
+      <div class="exp-left">
+        <div class="period">2020 – 2021</div>
+        <div class="org">Ayrshire Community</div>
+      </div>
+      <div class="exp-right">
+        <h3>Community Support Volunteer</h3>
+        <p>Revitalised a vegetable patch to supply a local food bank during COVID-19; supported customer service and inventory management at Ayr Hospital shop.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section id="awards">
+  <div class="section-label">Awards</div>
+  <h2>Achievements</h2>
+  <div class="awards-grid">
+    <div class="award-card fade-up">
+      <div class="award-icon">🏅</div>
+      <h3>Duke of Edinburgh Award</h3>
+      <p>Completed all three levels — Bronze, Silver, and Gold — demonstrating long-term commitment, leadership, and resilience through expeditions, volunteering, and skill development.</p>
+      <div class="award-year">2018 – Present</div>
+    </div>
+    <div class="award-card fade-up">
+      <div class="award-icon">⛵</div>
+      <h3>Royal Yachting Association</h3>
+      <p>Dinghy Sailing Stages 1–4, Twin-Handed Sailing, and Competent Crew qualification for racing yacht sailing.</p>
+      <div class="award-year">2013 – Present</div>
+    </div>
+    <div class="award-card fade-up">
+      <div class="award-icon">🏢</div>
+      <h3>Young Enterprise Scheme</h3>
+      <p>Co-founded and operated a student-led company with social impact focus, directing proceeds to mental health charities through product sales.</p>
+      <div class="award-year">2022</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label" style="justify-content:center">Contact</div>
+  <div class="contact-inner">
+    <h2>Let's connect</h2>
+    <p>I'm always open to interesting conversations about software, systems, or opportunities. Feel free to reach out.</p>
+    <div class="contact-links">
+      <a href="mailto:macmillanalexander75@gmail.com" class="btn btn-primary">Email Me</a>
+      <a href="https://linkedin.com" target="_blank" class="btn btn-outline">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 Alexander MacMillan</span>
+  <span>Computer Science · University of Edinburgh</span>
+</footer>
+
+<script>
+  // Fade-up on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Stagger children
+  document.querySelectorAll('.skills-grid, .projects-grid, .awards-grid').forEach(grid => {
+    [...grid.children].forEach((child, i) => {
+      child.style.transitionDelay = `${i * 0.1}s`;
+    });
+  });
+</script>
+</body>
+</html>
