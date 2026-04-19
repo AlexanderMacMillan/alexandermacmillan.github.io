@@ -9,16 +9,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
 :root{
-  --paper:#f4f0e6;
-  --paper-warm:#ede6d3;
-  --ink:#1a1a1a;
-  --ink-soft:#555;
-  --muted:#888;
-  --sky:#4a7ba7;
-  --leaf:#4a6b3a;
-  --nav-bg:rgba(244,240,230,0.88);
-  --blue-tint:rgba(74,123,167,0.04);
-  --leaf-tint:rgba(74,107,58,0.04);
+  --paper:#f5f1e4;
+  --paper-warm:#efe7d2;
+  --ink:#263020;
+  --ink-soft:#59624a;
+  --muted:#8d8e74;
+  --sky:#d2a83b;
+  --leaf:#5d7b4b;
+  --nav-bg:rgba(245,241,228,0.9);
+  --blue-tint:rgba(210,168,59,0.06);
+  --leaf-tint:rgba(93,123,75,0.08);
   --line-strong:rgba(0,0,0,0.2);
   --line-soft:rgba(0,0,0,0.15);
   --line-faint:rgba(0,0,0,0.06);
@@ -26,7 +26,10 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
-  background:var(--paper);
+  background:
+    radial-gradient(circle at top right, rgba(210,168,59,0.12), transparent 30%),
+    radial-gradient(circle at 20% 15%, rgba(93,123,75,0.12), transparent 28%),
+    linear-gradient(180deg, var(--paper-warm) 0%, var(--paper) 55%, color-mix(in srgb, var(--paper) 88%, var(--leaf) 12%) 100%);
   color:var(--ink);
   font-family:'EB Garamond',serif;
   font-weight:400;
@@ -39,14 +42,14 @@ body{
 body::before{
   content:'';
   position:fixed;inset:0;
-  background-image:url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.4  0 0 0 0 0.3  0 0 0 0 0.2  0 0 0 0.45 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-  opacity:0.35;pointer-events:none;z-index:1;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.36  0 0 0 0 0.33  0 0 0 0 0.22  0 0 0 0.24 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  opacity:0.2;pointer-events:none;z-index:1;mix-blend-mode:multiply;
 }
 body::after{
   content:'';
   position:fixed;inset:0;
-  background-image:url("data:image/svg+xml;utf8,<svg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23g)'/></svg>");
-  opacity:0.18;pointer-events:none;z-index:2;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='1.8' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.28  0 0 0 0 0.34  0 0 0 0 0.17  0 0 0 0.34 0'/></filter><rect width='100%' height='100%' filter='url(%23g)'/></svg>");
+  opacity:0.1;pointer-events:none;z-index:2;mix-blend-mode:multiply;
   animation:grain 0.8s steps(4) infinite;
 }
 @keyframes grain{
@@ -82,7 +85,7 @@ body, nav, #skills, #experience, footer, #sound-toggle,
 }
 .scribble path{
   fill:none;
-  stroke:var(--ink);
+  stroke:var(--leaf);
   stroke-width:1.15;
   stroke-linecap:square;
   stroke-linejoin:miter;
@@ -142,7 +145,7 @@ body, nav, #skills, #experience, footer, #sound-toggle,
 }
 #cursor-scribble-line{
   fill:none;
-  stroke:var(--ink);
+  stroke:var(--leaf);
   stroke-width:2.2;
   stroke-linecap:square;
   stroke-linejoin:miter;
@@ -151,7 +154,7 @@ body, nav, #skills, #experience, footer, #sound-toggle,
   image-rendering:pixelated;
 }
 #cursor-scribble-head{
-  fill:var(--ink);
+  fill:var(--leaf);
   opacity:0.9;
   shape-rendering:crispEdges;
 }
@@ -165,7 +168,7 @@ body, nav, #skills, #experience, footer, #sound-toggle,
   transition:all 0.3s;box-shadow:0 2px 10px rgba(0,0,0,0.08);
 }
 #sound-toggle:hover{background:var(--ink);color:var(--paper)}
-#sound-toggle.playing{background:var(--sky);color:var(--paper);border-color:var(--sky)}
+#sound-toggle.playing{background:var(--leaf);color:var(--paper);border-color:var(--leaf)}
 #sound-toggle .wave{display:inline-flex;gap:2px;align-items:center;height:14px}
 #sound-toggle .wave span{
   display:block;width:2px;background:currentColor;
@@ -196,7 +199,7 @@ nav{
   font-family:'JetBrains Mono',monospace;font-weight:300;
   transition:color 0.3s;
 }
-.nav-links a:hover{color:var(--sky)}
+.nav-links a:hover{color:var(--leaf)}
 
 #hero{
   min-height:100vh;padding:8rem 2.5rem 4rem;
@@ -249,7 +252,7 @@ h1 em{font-family:'EB Garamond',serif;font-style:italic;font-weight:400;color:va
 }
 .hero-image .img-wrap{
   width:100%;aspect-ratio:4/5;overflow:hidden;
-  position:relative;background:#8fb0c9;
+  position:relative;background:#a9bc8c;
 }
 .hero-image .img-wrap img{
   width:100%;height:100%;object-fit:cover;
@@ -303,7 +306,7 @@ h2 em{font-style:italic;color:var(--sky)}
 .about-text p{margin-bottom:1.3rem;font-size:1.1rem;line-height:1.8;color:var(--ink)}
 .about-text p strong{font-weight:500;color:var(--sky);font-style:italic}
 .about-image{grid-column:3;position:relative;padding-top:2rem}
-.about-image .img{aspect-ratio:1/1;position:relative;overflow:hidden;background:#8fa8c5}
+.about-image .img{aspect-ratio:1/1;position:relative;overflow:hidden;background:#a6b88f}
 .about-image .img img{width:100%;height:100%;object-fit:cover;}
 .about-image .img::after{
   content:none;
@@ -351,9 +354,9 @@ h2 em{font-style:italic;color:var(--sky)}
 }
 .project-meta .dot{color:var(--sky)}
 .project-visual{grid-column:2;position:relative}
-.project-visual .img{width:100%;aspect-ratio:5/6;position:relative;overflow:hidden;background:#3d4f28}
+.project-visual .img{width:100%;aspect-ratio:5/6;position:relative;overflow:hidden;background:#5f7341}
 .project-visual .img.sdp-photo{
-  background:#d7c96d;
+  background:#d9c85b;
 }
 .project-visual .img.sdp-photo .cad-card{
   position:absolute;
@@ -398,7 +401,7 @@ h2 em{font-style:italic;color:var(--sky)}
   position:relative;
   z-index:2;
   border:1px solid var(--line-strong);
-  background:rgba(0,0,0,0.12);
+  background:rgba(52,66,40,0.22);
   padding:0.8rem 0.95rem;
   backdrop-filter:blur(2px);
 }
@@ -554,13 +557,13 @@ h2 em{font-style:italic;color:var(--sky)}
 .chaos-footer{
   position:relative;
   width:100%;
-  height:290px;
-  margin:-0.95rem auto 0;
+  height:270px;
+  margin:-0.3rem auto 0;
   overflow:hidden;
-  opacity:0.44;
+  opacity:0.58;
   pointer-events:none;
   z-index:1;
-  mix-blend-mode:screen;
+  background:linear-gradient(180deg, transparent 0%, rgba(93,123,75,0.08) 100%);
 }
 .chaos-footer svg{
   width:100%;
@@ -570,102 +573,53 @@ h2 em{font-style:italic;color:var(--sky)}
   image-rendering:pixelated;
 }
 .chaos-footer .chaos-layer{
-  transform-origin:center;
-  animation:chaos-drift 12s steps(22, end) infinite alternate;
+  transform-origin:center bottom;
+  animation:meadow-sway 14s ease-in-out infinite alternate;
 }
-.chaos-footer .layer-2{
-  animation-duration:9s;
-  animation-direction:alternate-reverse;
-  opacity:0.9;
-}
-.chaos-footer .layer-3{
-  animation-duration:14s;
-  opacity:0.82;
-}
-.chaos-footer .layer-4{
-  animation:chaos-jitter 1.8s steps(4, end) infinite;
-  opacity:0.34;
-}
-.chaos-footer .layer-5{
-  animation:chaos-jitter 0.9s steps(3, end) infinite reverse;
-  opacity:0.2;
-}
+.chaos-footer .layer-2{animation-duration:18s;opacity:0.8}
+.chaos-footer .layer-3{animation-duration:20s;opacity:0.9}
+.chaos-footer .layer-4{animation:seed-drift 12s linear infinite;opacity:0.52}
 .chaos-footer path,
 .chaos-footer line,
 .chaos-footer circle,
 .chaos-footer polyline,
-.chaos-footer rect{
+.chaos-footer ellipse{
   fill:none;
-  stroke:var(--ink);
+  stroke:var(--leaf);
   stroke-width:0.95;
   stroke-linecap:square;
   stroke-linejoin:miter;
   vector-effect:non-scaling-stroke;
   shape-rendering:crispEdges;
 }
-.chaos-footer .thin-stroke{stroke-width:0.65}
-.chaos-footer .thick-stroke{stroke-width:1.35}
-.chaos-footer .scan-line{
+.chaos-footer .petal,
+.chaos-footer .sun-orb,
+.chaos-footer .sun-ray{
   stroke:var(--sky);
-  stroke-width:1.35;
-  opacity:0.46;
-  animation:scan-pulse 3.8s steps(10, end) infinite;
 }
-.chaos-footer .center-noise{
-  animation:noise-breathe 4.8s steps(12, end) infinite;
-  transform-origin:center;
+.chaos-footer .flower-core{
+  stroke:var(--ink);
 }
-.chaos-footer .glitch-slice{
-  opacity:0.26;
-  animation:slice-glitch 2.4s steps(6, end) infinite;
+.chaos-footer .seed,
+.chaos-footer .drift-grass{
+  stroke:var(--ink-soft);
+  opacity:0.6;
 }
-.chaos-footer .ghost-line{
+.chaos-footer .glow-line{
   stroke:var(--sky);
-  opacity:0.16;
-}
-.chaos-footer .flicker-node{
-  animation:node-flicker 1.6s steps(3, end) infinite;
-}
-.chaos-footer .microtext{
-  font-family:'JetBrains Mono',monospace;
-  font-size:8px;
-  letter-spacing:0.28em;
-  fill:var(--ink);
-  opacity:0.42;
-}
-.chaos-footer .microtext.alt{
-  fill:var(--sky);
   opacity:0.22;
 }
-@keyframes chaos-drift{
-  0%{transform:translate3d(-8px,-2px,0)}
-  50%{transform:translate3d(4px,3px,0)}
-  100%{transform:translate3d(10px,-4px,0)}
+@keyframes meadow-sway{
+  0%{transform:translateX(-6px) rotate(-0.8deg)}
+  50%{transform:translateX(4px) rotate(0.6deg)}
+  100%{transform:translateX(8px) rotate(1deg)}
 }
-@keyframes chaos-jitter{
+@keyframes seed-drift{
   0%{transform:translate(0,0)}
-  25%{transform:translate(3px,-2px)}
-  50%{transform:translate(-2px,2px)}
-  75%{transform:translate(4px,1px)}
-  100%{transform:translate(-3px,-1px)}
+  35%{transform:translate(12px,-8px)}
+  70%{transform:translate(-6px,-14px)}
+  100%{transform:translate(8px,-20px)}
 }
-@keyframes scan-pulse{
-  0%,100%{opacity:0.08}
-  50%{opacity:0.72}
-}
-@keyframes noise-breathe{
-  0%,100%{opacity:0.42;transform:scale(0.975)}
-  50%{opacity:0.9;transform:scale(1.035)}
-}
-@keyframes slice-glitch{
-  0%,100%{transform:translate(0,0);opacity:0.16}
-  20%{transform:translate(8px,0);opacity:0.32}
-  40%{transform:translate(-6px,1px);opacity:0.12}
-  60%{transform:translate(11px,-1px);opacity:0.28}
-  80%{transform:translate(-4px,0);opacity:0.18}
-}
-@keyframes node-flicker{
-  0%,100%{opacity:0.18}
   35%{opacity:0.92}
   55%{opacity:0.22}
   72%{opacity:0.76}
@@ -1070,7 +1024,7 @@ footer .right{text-align:right}
     <div class="project-meta">feat. iv · mmxxv · systems design</div>
     <div class="project-visual">
       <div class="img sdp-photo">
-        <img src="images/sunflower.jpg" alt="sunflower in a field" loading="lazy"/>
+        <img src="images/sunflower.png" alt="sunflower in a field" loading="lazy"/>
         <div class="cad-card">
           <span class="cad-small">fusion 360 · prototyping · sdp</span>
           <span class="cad-big">curbie / bin base<br>cad study</span>
@@ -1143,7 +1097,7 @@ footer .right{text-align:right}
     <div class="contact-links">
       <a href="mailto:macmillanalexander75@gmail.com" class="contact-email">macmillanalexander75@gmail.com</a>
       <span class="contact-divider">/</span>
-      <a href="https://www.linkedin.com/in/alexander-macmillan-40b54a387/" class="contact-link" target="_blank" rel="noopener noreferrer">linkedin</a>
+      <a href="https://www.linkedin.com/in/your-linkedin-here" class="contact-link" target="_blank" rel="noopener noreferrer">linkedin</a>
     </div>
     <div class="contact-coords">55.9533° n &nbsp;·&nbsp; 3.1883° w &nbsp;·&nbsp; edinburgh · scotland</div>
   </div>
@@ -1287,135 +1241,68 @@ footer .right{text-align:right}
 </div>
 
 <div class="chaos-footer" aria-hidden="true">
-  <svg viewBox="0 0 1600 290">
+  <svg viewBox="0 0 1600 270">
     <g class="chaos-layer layer-1">
-      <circle cx="112" cy="96" r="30"/>
-      <line x1="82" y1="96" x2="142" y2="96"/>
-      <line x1="112" y1="66" x2="112" y2="126"/>
-      <circle cx="246" cy="58" r="18"/>
-      <rect x="290" y="36" width="78" height="46"/>
-      <line x1="330" y1="24" x2="330" y2="100"/>
-      <rect x="414" y="48" width="62" height="28"/>
-      <circle cx="526" cy="68" r="20"/>
-      <line x1="512" y1="54" x2="540" y2="82"/>
-      <line x1="540" y1="54" x2="512" y2="82"/>
-      <rect x="1084" y="36" width="86" height="48"/>
-      <circle cx="1236" cy="58" r="22"/>
-      <line x1="1214" y1="58" x2="1258" y2="58"/>
-      <line x1="1236" y1="36" x2="1236" y2="80"/>
-      <rect x="1324" y="44" width="70" height="36"/>
-      <circle cx="1472" cy="84" r="26"/>
-      <path d="M1440 84 H1504"/>
-      <path d="M1472 58 V110"/>
-      <path d="M86 178 H336"/>
-      <path d="M1140 178 H1510"/>
-      <path d="M52 232 H198"/>
-      <path d="M1396 232 H1544"/>
-      <path d="M590 18 V256"/>
-      <path d="M1012 12 V270"/>
-      <path d="M708 10 V264"/>
-      <path d="M890 8 V272"/>
-      <path class="thin-stroke" d="M0 144 H1600"/>
-      <path class="thin-stroke" d="M0 145 H1600"/>
+      <path d="M30 260 C54 226 76 188 88 144 C98 108 102 72 102 28"/>
+      <path d="M84 166 C62 150 42 144 20 146" class="drift-grass"/>
+      <path d="M96 120 C72 106 52 102 30 104" class="drift-grass"/>
+      <path d="M148 260 C164 230 176 194 184 156 C192 114 196 72 196 22"/>
+      <path d="M182 176 C202 158 222 150 244 150" class="drift-grass"/>
+      <path d="M174 128 C196 116 214 112 238 114" class="drift-grass"/>
+      <path d="M286 260 C300 224 314 186 330 150 C344 118 362 84 386 54"/>
+      <path d="M330 154 C300 140 274 134 246 134" class="drift-grass"/>
+      <path d="M502 260 C512 230 520 202 528 172 C536 142 546 108 562 74"/>
+      <path d="M720 260 C732 226 744 194 760 166 C778 134 798 100 826 66"/>
+      <path d="M940 260 C952 226 966 196 984 168 C1002 140 1024 110 1048 84"/>
+      <path d="M1176 260 C1184 228 1194 198 1208 170 C1224 138 1246 106 1272 78"/>
+      <path d="M1360 260 C1370 228 1384 198 1402 170 C1420 142 1442 114 1466 88"/>
+      <path d="M1520 260 C1530 234 1540 206 1550 178 C1560 148 1568 116 1572 84"/>
     </g>
     <g class="chaos-layer layer-2">
-      <circle cx="168" cy="204" r="38"/>
-      <circle cx="168" cy="204" r="18"/>
-      <line x1="130" y1="204" x2="206" y2="204"/>
-      <line x1="168" y1="166" x2="168" y2="242"/>
-      <circle cx="312" cy="156" r="24"/>
-      <path d="M288 156 H336"/>
-      <path d="M312 132 V180"/>
-      <circle cx="1306" cy="178" r="34"/>
-      <circle cx="1306" cy="178" r="15"/>
-      <path d="M1272 178 H1340"/>
-      <path d="M1306 144 V212"/>
-      <circle cx="1450" cy="146" r="22"/>
-      <rect x="1416" y="182" width="82" height="38"/>
-      <path d="M1388 106 C1410 92 1432 90 1456 96"/>
-      <path d="M1420 122 C1442 114 1466 114 1490 120"/>
-      <path d="M112 42 C140 34 168 36 196 44"/>
-      <path d="M104 60 C138 54 174 56 208 66"/>
-      <path d="M262 218 C284 198 310 192 342 198"/>
-      <path d="M1268 220 C1294 200 1326 196 1356 202"/>
-      <rect x="468" y="144" width="94" height="56"/>
-      <circle cx="468" cy="144" r="14"/>
-      <circle cx="562" cy="200" r="14"/>
-      <line x1="468" y1="144" x2="562" y2="200"/>
-      <rect x="1026" y="150" width="106" height="60"/>
-      <circle cx="1026" cy="210" r="16"/>
-      <circle cx="1132" cy="150" r="16"/>
-      <line x1="1026" y1="210" x2="1132" y2="150"/>
+      <path d="M312 146 C330 122 352 108 378 104 C404 100 426 108 444 128"/>
+      <path class="petal" d="M380 136 C360 120 352 100 360 82 C370 60 396 56 416 72 C432 84 438 106 430 126 C420 148 402 152 380 136 Z"/>
+      <path class="petal" d="M380 136 C350 138 328 128 320 108 C310 86 324 64 348 62 C366 60 384 70 394 90 C406 114 402 130 380 136 Z"/>
+      <path class="petal" d="M380 136 C354 152 334 170 334 192 C334 214 352 228 376 224 C396 220 410 204 414 184 C420 158 406 144 380 136 Z"/>
+      <circle cx="382" cy="138" r="20" class="flower-core"/>
+      <path d="M1128 126 C1148 102 1170 88 1196 84 C1222 80 1248 90 1268 112"/>
+      <path class="petal" d="M1204 118 C1188 88 1188 62 1206 42 C1222 24 1252 24 1268 42 C1284 58 1284 86 1270 106 C1254 130 1230 136 1204 118 Z"/>
+      <path class="petal" d="M1204 118 C1176 98 1162 74 1170 52 C1178 30 1204 20 1228 28 C1248 34 1262 52 1262 74 C1264 104 1240 120 1204 118 Z"/>
+      <path class="petal" d="M1204 118 C1180 132 1168 154 1176 176 C1184 198 1210 208 1234 200 C1254 194 1268 176 1270 154 C1272 130 1250 116 1204 118 Z"/>
+      <circle cx="1210" cy="120" r="24" class="flower-core"/>
+      <circle cx="790" cy="98" r="78" class="sun-orb"/>
+      <path class="sun-ray" d="M790 8 V40"/>
+      <path class="sun-ray" d="M790 156 V188"/>
+      <path class="sun-ray" d="M700 98 H732"/>
+      <path class="sun-ray" d="M848 98 H880"/>
+      <path class="sun-ray" d="M730 38 L750 58"/>
+      <path class="sun-ray" d="M850 38 L830 58"/>
+      <path class="sun-ray" d="M728 160 L748 140"/>
+      <path class="sun-ray" d="M850 160 L830 140"/>
     </g>
-    <g class="chaos-layer layer-3 center-noise">
-      <polyline points="620,20 654,44 682,78 706,118 724,142 752,126 780,92 806,64 836,40 868,28"/>
-      <polyline points="606,42 644,72 682,110 716,146 752,168 790,150 830,114 862,82 894,54 926,40"/>
-      <polyline points="594,68 632,98 676,136 718,168 764,186 808,172 848,142 886,110 922,84 956,68"/>
-      <polyline points="610,104 650,120 694,146 736,174 780,194 824,188 872,170 914,146 952,122 988,102"/>
-      <polyline points="598,132 640,146 688,170 734,196 784,216 836,208 886,190 934,168 980,142 1020,118"/>
-      <polyline points="632,18 664,60 688,108 704,148 726,190 748,230"/>
-      <polyline points="704,10 724,58 742,102 760,152 774,206 786,250"/>
-      <polyline points="780,8 784,56 792,104 802,154 816,212 826,260"/>
-      <polyline points="852,14 846,58 840,104 834,152 826,214 818,266"/>
-      <polyline points="932,20 906,60 882,100 854,144 830,194 806,240"/>
-      <polyline points="986,34 948,72 910,110 874,150 840,196 802,242"/>
-      <polyline points="658,92 706,84 752,86 802,94 850,108 892,126 934,150"/>
-      <polyline points="646,146 694,136 744,134 794,138 844,150 892,170 938,194"/>
-      <polyline points="652,188 702,182 752,180 806,184 858,194 908,206 954,220"/>
-      <polyline points="690,38 734,72 780,112 826,156 874,196 924,226"/>
-      <polyline points="928,38 888,76 844,116 800,160 756,202 714,236"/>
-      <circle cx="804" cy="132" r="18"/>
-      <circle cx="804" cy="132" r="46"/>
-      <circle cx="804" cy="132" r="78"/>
-      <circle cx="804" cy="132" r="110" class="thin-stroke"/>
-      <line x1="694" y1="132" x2="914" y2="132"/>
-      <line x1="804" y1="22" x2="804" y2="242"/>
-      <line x1="748" y1="76" x2="860" y2="188" class="ghost-line"/>
-      <line x1="860" y1="76" x2="748" y2="188" class="ghost-line"/>
+    <g class="chaos-layer layer-3">
+      <path d="M0 238 C120 226 246 220 372 220 C566 220 760 232 940 230 C1148 228 1370 210 1600 192" class="glow-line"/>
+      <path d="M0 252 C112 240 228 236 356 238 C540 240 736 252 930 250 C1160 248 1382 232 1600 220" class="glow-line"/>
+      <path d="M410 260 C420 236 426 210 428 184"/>
+      <path d="M1188 260 C1194 234 1200 208 1204 180"/>
+      <path d="M610 260 C600 230 590 204 574 176 C556 148 536 124 512 100"/>
+      <path d="M1030 260 C1016 230 1000 202 982 176 C964 150 944 128 922 108"/>
+      <path d="M648 260 C642 232 638 206 638 182 C638 154 646 128 664 104" class="drift-grass"/>
+      <path d="M1066 260 C1058 232 1054 208 1054 184 C1054 154 1062 130 1080 108" class="drift-grass"/>
+      <path d="M890 260 C894 232 900 206 912 180 C924 152 940 126 960 104" class="drift-grass"/>
+      <path d="M738 260 C732 234 724 210 712 186 C700 160 682 136 660 116" class="drift-grass"/>
     </g>
-    <g class="chaos-layer layer-4 glitch-slice">
-      <rect x="0" y="40" width="1600" height="10"/>
-      <rect x="0" y="88" width="1600" height="8"/>
-      <rect x="0" y="136" width="1600" height="6"/>
-      <rect x="0" y="186" width="1600" height="9"/>
-      <rect x="0" y="232" width="1600" height="7"/>
-      <line x1="0" y1="44" x2="1600" y2="44" class="ghost-line"/>
-      <line x1="0" y1="189" x2="1600" y2="189" class="ghost-line"/>
+    <g class="chaos-layer layer-4">
+      <path class="seed" d="M1320 62 C1332 52 1344 50 1356 56 C1368 62 1370 74 1362 86 C1354 98 1342 102 1330 96 C1318 90 1316 76 1320 62 Z"/>
+      <path class="seed" d="M1360 86 C1372 76 1384 74 1396 80 C1408 86 1410 98 1402 110 C1394 122 1382 126 1370 120 C1358 114 1356 100 1360 86 Z"/>
+      <path class="seed" d="M1404 114 C1416 104 1428 102 1440 108 C1452 114 1454 126 1446 138 C1438 150 1426 154 1414 148 C1402 142 1400 128 1404 114 Z"/>
+      <path class="seed" d="M1448 142 C1460 132 1472 130 1484 136 C1496 142 1498 154 1490 166 C1482 178 1470 182 1458 176 C1446 170 1444 156 1448 142 Z"/>
+      <path class="seed" d="M1490 170 C1502 160 1514 158 1526 164 C1538 170 1540 182 1532 194 C1524 206 1512 210 1500 204 C1488 198 1486 184 1490 170 Z"/>
+      <path class="seed" d="M1340 68 L1312 24"/>
+      <path class="seed" d="M1380 92 L1358 48"/>
+      <path class="seed" d="M1422 120 L1404 74"/>
+      <path class="seed" d="M1468 148 L1450 102"/>
+      <path class="seed" d="M1510 176 L1494 130"/>
     </g>
-    <g class="chaos-layer layer-5">
-      <path d="M40 34 L64 18 L92 24 L76 48 Z"/>
-      <path d="M1508 38 L1534 18 L1560 26 L1542 52 Z"/>
-      <path d="M60 114 L98 126 L70 148"/>
-      <path d="M1522 112 L1488 126 L1514 148"/>
-      <path d="M48 238 L76 220 L108 228"/>
-      <path d="M1492 234 L1526 218 L1556 226"/>
-      <circle cx="210" cy="78" r="6" class="flicker-node"/>
-      <circle cx="416" cy="208" r="7" class="flicker-node"/>
-      <circle cx="664" cy="98" r="6" class="flicker-node"/>
-      <circle cx="952" cy="174" r="7" class="flicker-node"/>
-      <circle cx="1204" cy="86" r="6" class="flicker-node"/>
-      <circle cx="1446" cy="212" r="7" class="flicker-node"/>
-      <text class="microtext" x="86" y="18">FIELD 01</text>
-      <text class="microtext alt" x="82" y="30">FRACTURE</text>
-      <text class="microtext" x="1348" y="18">SHIFT NODE</text>
-      <text class="microtext alt" x="1328" y="30">DIVERGENCE</text>
-      <text class="microtext" x="672" y="278">WORLD LINE / TRANSIENT RECORD / ERROR STACK / GATE SIGNAL</text>
-    </g>
-    <g class="chaos-layer layer-2 thin-stroke">
-      <line x1="84" y1="0" x2="84" y2="290"/>
-      <line x1="198" y1="0" x2="198" y2="290"/>
-      <line x1="354" y1="0" x2="354" y2="290"/>
-      <line x1="1182" y1="0" x2="1182" y2="290"/>
-      <line x1="1318" y1="0" x2="1318" y2="290"/>
-      <line x1="1478" y1="0" x2="1478" y2="290"/>
-      <path d="M0 68 H1600"/>
-      <path d="M0 108 H1600"/>
-      <path d="M0 164 H1600"/>
-      <path d="M0 218 H1600"/>
-    </g>
-    <line class="scan-line" x1="800" y1="0" x2="800" y2="290"/>
-    <line class="scan-line" x1="808" y1="0" x2="808" y2="290"/>
-    <line class="scan-line" x1="792" y1="0" x2="792" y2="290"/>
   </svg>
 </div>
 
@@ -1448,16 +1335,16 @@ function updateScrollTheme(){
   const eased = localProgress * localProgress * (3 - 2 * localProgress);
   const themeProgress = Math.min(1, eased * 1.02);
 
-  root.style.setProperty('--paper', mixColor([244,240,230], [8,8,8], themeProgress));
-  root.style.setProperty('--paper-warm', mixColor([237,230,211], [18,18,18], themeProgress));
-  root.style.setProperty('--ink', mixColor([26,26,26], [248,248,248], themeProgress));
-  root.style.setProperty('--ink-soft', mixColor([85,85,85], [214,214,214], themeProgress));
-  root.style.setProperty('--muted', mixColor([136,136,136], [186,186,186], themeProgress));
-  root.style.setProperty('--sky', mixColor([74,123,167], [212,230,247], themeProgress));
-  root.style.setProperty('--leaf', mixColor([74,107,58], [215,234,215], themeProgress));
-  root.style.setProperty('--nav-bg', mixRgba([244,240,230,0.88], [8,8,8,0.9], themeProgress));
-  root.style.setProperty('--blue-tint', mixRgba([74,123,167,0.04], [212,230,247,0.08], themeProgress));
-  root.style.setProperty('--leaf-tint', mixRgba([74,107,58,0.04], [215,234,215,0.07], themeProgress));
+  root.style.setProperty('--paper', mixColor([245,241,228], [10,10,8], themeProgress));
+  root.style.setProperty('--paper-warm', mixColor([239,231,210], [20,18,14], themeProgress));
+  root.style.setProperty('--ink', mixColor([38,48,32], [248,246,238], themeProgress));
+  root.style.setProperty('--ink-soft', mixColor([89,98,74], [218,216,206], themeProgress));
+  root.style.setProperty('--muted', mixColor([141,142,116], [190,190,176], themeProgress));
+  root.style.setProperty('--sky', mixColor([210,168,59], [244,229,159], themeProgress));
+  root.style.setProperty('--leaf', mixColor([93,123,75], [215,234,205], themeProgress));
+  root.style.setProperty('--nav-bg', mixRgba([245,241,228,0.9], [10,10,8,0.92], themeProgress));
+  root.style.setProperty('--blue-tint', mixRgba([210,168,59,0.06], [244,229,159,0.08], themeProgress));
+  root.style.setProperty('--leaf-tint', mixRgba([93,123,75,0.08], [215,234,205,0.08], themeProgress));
   root.style.setProperty('--line-strong', mixRgba([0,0,0,0.2], [255,255,255,0.22], themeProgress));
   root.style.setProperty('--line-soft', mixRgba([0,0,0,0.15], [255,255,255,0.18], themeProgress));
   root.style.setProperty('--line-faint', mixRgba([0,0,0,0.06], [255,255,255,0.12], themeProgress));
