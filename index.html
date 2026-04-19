@@ -61,6 +61,8 @@ body > *{position:relative;z-index:3}
   width:100%;
   height:100%;
   overflow:visible;
+  shape-rendering:crispEdges;
+  image-rendering:pixelated;
 }
 .scribble .cursor-group{
   animation:cursor-wander var(--wander-duration, 14s) ease-in-out infinite alternate;
@@ -69,18 +71,20 @@ body > *{position:relative;z-index:3}
 .scribble path{
   fill:none;
   stroke:var(--ink);
-  stroke-width:0.9;
-  stroke-linecap:round;
-  stroke-linejoin:round;
+  stroke-width:1.15;
+  stroke-linecap:square;
+  stroke-linejoin:miter;
   stroke-dasharray:3000;
   stroke-dashoffset:3000;
   opacity:0.85;
-  animation:draw-loop var(--draw-duration, 5.8s) ease-in-out infinite;
+  animation:draw-loop var(--draw-duration, 5.8s) steps(34, end) infinite;
+  shape-rendering:crispEdges;
 }
 .scribble .cursor-dot{
   fill:var(--ink);
-  opacity:0.85;
-  animation:cursor-follow var(--draw-duration, 5.8s) linear infinite;
+  opacity:0.88;
+  animation:cursor-follow var(--draw-duration, 5.8s) steps(18, end) infinite;
+  shape-rendering:crispEdges;
 }
 @keyframes draw-loop{
   0%{stroke-dashoffset:3000;opacity:0}
@@ -90,14 +94,14 @@ body > *{position:relative;z-index:3}
   100%{stroke-dashoffset:-3000;opacity:0}
 }
 @keyframes cursor-follow{
-  0%,6%{opacity:0;transform:translate(0,0) scale(0.6)}
-  12%{opacity:0.85;transform:translate(6px,-4px) scale(1)}
-  24%{transform:translate(20px,10px) scale(0.95)}
-  38%{transform:translate(42px,-8px) scale(1)}
-  52%{transform:translate(66px,14px) scale(0.96)}
-  66%{transform:translate(92px,-10px) scale(1)}
-  80%{transform:translate(118px,12px) scale(0.92)}
-  100%{opacity:0;transform:translate(136px,-2px) scale(0.5)}
+  0%,6%{opacity:0;transform:translate(0px,0px) scale(0.7)}
+  12%{opacity:0.88;transform:translate(8px,-4px) scale(1)}
+  24%{transform:translate(20px,8px) scale(1)}
+  38%{transform:translate(44px,-8px) scale(1)}
+  52%{transform:translate(68px,12px) scale(1)}
+  66%{transform:translate(92px,-8px) scale(1)}
+  80%{transform:translate(116px,12px) scale(1)}
+  100%{opacity:0;transform:translate(136px,0px) scale(0.7)}
 }
 @keyframes cursor-wander{
   0%{transform:translate(0,0) rotate(0.2deg)}
@@ -349,6 +353,47 @@ h2 em{font-style:italic;color:var(--sky)}
 .exp-right h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;margin-bottom:0.6rem}
 .exp-right p{color:var(--ink-soft);font-size:0.98rem}
 .scribble-exp{position:absolute;top:15%;right:3%;width:200px;height:200px;z-index:1;opacity:0.5}
+.scribble-botanical{
+  position:absolute;
+  right:4%;
+  bottom:4%;
+  width:320px;
+  height:620px;
+  z-index:1;
+  opacity:0.32;
+}
+.scribble-botanical path,
+.scribble-botanical line,
+.scribble-botanical polyline,
+.scribble-score path,
+.scribble-score line,
+.scribble-score polyline{
+  fill:none;
+  stroke:var(--ink);
+  stroke-width:1.1;
+  stroke-linecap:square;
+  stroke-linejoin:miter;
+  vector-effect:non-scaling-stroke;
+  shape-rendering:crispEdges;
+}
+.scribble-botanical .cursor-group,
+.scribble-score .cursor-group{
+  animation:cursor-wander var(--wander-duration, 14s) ease-in-out infinite alternate;
+}
+.scribble-botanical .cursor-dot,
+.scribble-score .cursor-dot{
+  fill:var(--ink);
+  opacity:0.82;
+  animation:cursor-follow var(--draw-duration, 5.8s) linear infinite;
+}
+.scribble-score{
+  position:relative;
+  width:min(1100px,92vw);
+  height:190px;
+  margin:0 auto 1.5rem;
+  opacity:0.42;
+  z-index:2;
+}
 
 #contact{text-align:center;padding:10rem 2.5rem;position:relative;overflow:hidden}
 .contact-eyebrow{font-family:'JetBrains Mono',monospace;font-size:0.7rem;letter-spacing:0.35em;color:var(--muted);margin-bottom:2rem;display:flex;justify-content:center;align-items:center;gap:1rem}
@@ -443,7 +488,7 @@ footer .right{text-align:right}
     <div class="hero-issue"><span class="bar"></span>portfolio · vol. i · no. 01<span class="bar"></span></div>
     <h1>alexander<br><em>macmillan</em></h1>
     <div class="hero-subtitle">— a computer science student, building things from the ground up.</div>
-    <div class="hero-quote">there's this idea that software should feel built, not assembled. a little portal into how things actually work.</div>
+    <div class="hero-quote">there's this idea that software should feel built, not assembled — a small portal into how things actually work.</div>
   </div>
   <div class="hero-image">
     <div class="img-wrap"><img src="images/sky.png" alt="summer sky" loading="lazy"/></div>
@@ -480,7 +525,7 @@ footer .right{text-align:right}
   <div class="about-grid">
     <div class="about-text">
       <p>I'm a second-year computer science student at the <strong>University of Edinburgh</strong>, with a particular interest in the quiet, foundational parts of software — kernels, protocols, and the code that runs underneath everything else.</p>
-      <p>Recent work has taken me through <strong>Linux kernel modifications</strong> on v6.12 (custom syscalls, per-process memory ledgers), <strong>networking protocol implementations</strong>, and a System Design Project building an autonomous bin collection robot called Curbie.</p>
+      <p>Recent work has taken me through <strong>Linux kernel modifications</strong> on v6.12, including custom syscalls and per-process memory ledgers, <strong>networking protocol implementations</strong>, and a System Design Project centred on building an autonomous bin collection robot called Curbie.</p>
       <p>Away from the terminal I'm an <strong>Officer Cadet</strong> with the City of Edinburgh OTC, a Gold Duke of Edinburgh award holder, and an RYA Competent Crew — the outdoor life matters to me as much as the indoor one.</p>
     </div>
     <div class="about-image">
@@ -510,7 +555,7 @@ footer .right{text-align:right}
       <div class="edu-body">
         <h3>University of Edinburgh</h3>
         <div class="inst">— BSc computer science</div>
-        <p>coursework across operating systems, computer networks, data science, and software engineering. recent work includes kernel dev on linux v6.12, networking protocol implementations, and a system design project building an autonomous robot.</p>
+        <p>coursework across operating systems, computer networks, data science, and software engineering. recent work includes kernel development on Linux v6.12, networking protocol implementations, and a system design project focused on building an autonomous robot.</p>
       </div>
     </div>
     <div class="edu-item">
@@ -576,7 +621,7 @@ footer .right{text-align:right}
   <div class="section-header">
     <div class="section-num"><span class="arrow">❋</span>§ 04</div>
     <h2>selected<br><em>work.</em></h2>
-    <div class="section-caption">three projects I'm still proud of — each a small window into something I was trying to understand at the time.</div>
+    <div class="section-caption">three projects I'm still proud of — each a small window into what I was trying to understand at the time.</div>
   </div>
 
   <div class="project">
@@ -588,7 +633,7 @@ footer .right{text-align:right}
       <div class="project-tag">— feature 01</div>
       <h3>Renewable energy<br><em>impact analysis.</em></h3>
       <p>A data science study of 6,270+ energy records from Appleton Tower, evaluating carbon reduction strategies for the University. Half-hourly electricity, heat, and solar generation data were cleaned, aligned, and merged into a single analysis pipeline so that trends could be compared across demand, supply, and seasonality rather than in isolation.</p>
-      <p>The most interesting result was also the least flattering: despite a 26kW solar installation, the panels offset only 4.49% of peak monthly demand. That turned the project from a simple reporting exercise into something closer to decision support, forcing me to think carefully about how to present technically accurate findings that also had real implications for sustainability planning and infrastructure investment.</p>
+      <p>The most interesting result was also the least flattering: despite a 26kW solar installation, the panels offset only 4.49% of peak monthly demand. That turned the project from a simple reporting exercise into something closer to decision support, forcing me to think carefully about how to present technically accurate findings with real implications for sustainability planning and infrastructure investment.</p>
       <div class="project-stack"><span>Python</span><span>Pandas</span><span>Matplotlib</span><span>Time series</span></div>
     </div>
     <div class="scribble scribble-p1 delay-1 speed-2">
@@ -644,6 +689,26 @@ footer .right{text-align:right}
       </svg>
     </div>
   </div>
+  <div class="scribble scribble-botanical delay-2 speed-3">
+    <svg viewBox="0 0 320 620" aria-hidden="true">
+      <g class="cursor-group">
+        <path d="M206 598 C198 564 190 530 191 492 C192 454 203 415 222 374 C232 352 238 328 237 302 C235 274 222 251 198 234"/>
+        <path d="M196 236 C166 214 132 207 103 219 C78 230 69 253 79 275 C92 301 126 307 157 296 C180 288 194 272 197 255"/>
+        <path d="M197 255 C177 241 150 239 126 248 C105 257 96 274 101 291 C108 313 135 321 161 317 C181 313 195 300 201 286"/>
+        <path d="M227 231 C247 207 271 194 292 198 C307 201 315 212 313 227 C310 248 290 261 267 267 C249 272 234 266 225 252"/>
+        <path d="M232 248 C254 232 278 226 296 231 C309 235 314 244 312 257 C308 274 290 286 271 291 C251 297 235 287 228 272"/>
+        <path d="M239 304 C253 290 271 284 287 288 C299 292 304 301 303 313 C301 327 287 338 271 341 C254 345 241 337 236 325"/>
+        <path d="M223 378 C241 364 263 359 282 364 C297 369 304 380 301 394 C297 412 277 423 256 426 C237 428 222 418 218 404"/>
+        <path d="M217 407 C196 393 174 389 156 395 C143 400 138 410 141 422 C145 438 162 447 182 450 C198 451 212 443 218 430"/>
+        <path d="M183 510 C167 492 149 482 132 483 C119 484 111 492 110 504 C109 519 122 531 139 537 C156 541 171 533 181 520"/>
+        <path d="M175 532 C160 517 144 510 129 511 C117 512 110 519 109 530 C107 545 119 556 134 561 C151 566 165 559 175 545"/>
+        <path d="M233 371 C246 355 253 336 253 314 C253 290 247 269 236 252"/>
+        <path d="M228 273 C243 258 255 239 261 217 C268 192 266 169 251 144"/>
+        <path d="M251 145 C234 120 215 105 194 101 C178 98 166 104 162 117 C156 136 168 155 187 168 C205 180 227 177 244 165"/>
+        <circle class="cursor-dot" cx="197" cy="253" r="2.4"/>
+      </g>
+    </svg>
+  </div>
 </section>
 
 <section id="experience">
@@ -698,7 +763,7 @@ footer .right{text-align:right}
   <div class="contact-inner">
     <div class="contact-eyebrow">(say hello)</div>
     <div class="contact-big">let's <em>talk.</em></div>
-    <div class="contact-sub">— always happy to chat about software, systems, or anything sitting somewhere between the two.</div>
+    <div class="contact-sub">— always happy to chat about software, systems, or anything in between.</div>
     <div class="contact-links">
       <a href="mailto:macmillanalexander75@gmail.com" class="contact-email">macmillanalexander75@gmail.com</a>
       <span class="contact-divider">/</span>
@@ -707,6 +772,59 @@ footer .right{text-align:right}
     <div class="contact-coords">55.9533° n &nbsp;·&nbsp; 3.1883° w &nbsp;·&nbsp; edinburgh · scotland</div>
   </div>
 </section>
+
+<div class="scribble-score delay-1 speed-2" aria-hidden="true">
+  <svg viewBox="0 0 1200 190">
+    <g class="cursor-group">
+      <line x1="12" y1="46" x2="1188" y2="46"/>
+      <line x1="12" y1="58" x2="1188" y2="58"/>
+      <line x1="12" y1="70" x2="1188" y2="70"/>
+      <line x1="12" y1="82" x2="1188" y2="82"/>
+      <line x1="12" y1="94" x2="1188" y2="94"/>
+      <path d="M28 102 C18 89 18 67 30 53 C39 43 52 45 55 58 C57 68 49 76 39 78 C28 80 20 71 22 60 C26 37 51 25 74 30"/>
+      <path d="M116 88 C126 80 137 79 145 86 C151 93 149 103 141 108 C132 114 120 112 114 104 C108 96 110 90 116 88 Z"/>
+      <line x1="146" y1="89" x2="146" y2="46"/>
+      <path d="M214 100 C224 92 236 91 244 98 C250 105 248 115 239 120 C230 126 218 124 212 116 C206 108 208 101 214 100 Z"/>
+      <line x1="244" y1="100" x2="244" y2="58"/>
+      <path d="M311 75 C322 66 334 66 342 73 C348 79 347 90 338 95 C329 101 316 100 309 92 C303 85 305 78 311 75 Z"/>
+      <line x1="342" y1="74" x2="342" y2="30"/>
+      <path d="M344 31 C355 27 365 24 377 22"/>
+      <line x1="430" y1="42" x2="430" y2="98"/>
+      <path d="M516 88 C526 80 537 79 545 86 C551 93 549 103 541 108 C532 114 520 112 514 104 C508 96 510 90 516 88 Z"/>
+      <line x1="546" y1="88" x2="546" y2="46"/>
+      <path d="M613 99 C624 91 636 90 644 97 C650 104 648 114 639 119 C630 125 618 123 612 115 C606 107 607 101 613 99 Z"/>
+      <path d="M644 98 C658 92 670 87 684 83"/>
+      <line x1="742" y1="42" x2="742" y2="98"/>
+      <path d="M815 74 C826 66 838 65 846 72 C852 79 850 89 842 94 C832 100 820 99 814 91 C808 84 809 77 815 74 Z"/>
+      <line x1="846" y1="73" x2="846" y2="34"/>
+      <path d="M934 88 C944 80 955 79 963 86 C969 93 967 103 959 108 C950 114 938 112 932 104 C926 96 928 90 934 88 Z"/>
+      <line x1="964" y1="88" x2="964" y2="46"/>
+      <path d="M1038 98 C1048 90 1060 89 1068 96 C1074 103 1072 113 1063 118 C1054 124 1042 122 1036 114 C1030 106 1032 99 1038 98 Z"/>
+      <line x1="1068" y1="97" x2="1068" y2="58"/>
+      <path d="M1095 57 C1107 53 1119 48 1131 43"/>
+      <line x1="12" y1="136" x2="1188" y2="136"/>
+      <line x1="12" y1="148" x2="1188" y2="148"/>
+      <line x1="12" y1="160" x2="1188" y2="160"/>
+      <line x1="12" y1="172" x2="1188" y2="172"/>
+      <line x1="12" y1="184" x2="1188" y2="184"/>
+      <path d="M26 191 C18 178 18 156 30 142 C40 130 54 133 57 147 C59 157 50 165 40 167 C29 169 20 160 22 149 C26 125 52 114 74 119"/>
+      <path d="M170 177 C181 169 193 168 201 175 C207 182 205 192 196 197 C187 203 175 201 169 193 C163 185 164 179 170 177 Z"/>
+      <line x1="201" y1="176" x2="201" y2="136"/>
+      <path d="M286 163 C297 155 309 154 317 161 C323 168 321 178 312 183 C303 189 291 187 285 179 C279 171 280 165 286 163 Z"/>
+      <line x1="317" y1="162" x2="317" y2="124"/>
+      <path d="M428 187 C439 179 451 178 459 185 C465 192 463 202 454 207 C445 213 433 211 427 203 C421 195 422 189 428 187 Z"/>
+      <line x1="459" y1="186" x2="459" y2="148"/>
+      <path d="M564 176 C575 168 587 167 595 174 C601 181 599 191 590 196 C581 202 569 200 563 192 C557 184 558 178 564 176 Z"/>
+      <path d="M595 175 C609 169 621 164 634 159"/>
+      <line x1="724" y1="132" x2="724" y2="188"/>
+      <path d="M842 164 C853 156 865 155 873 162 C879 169 877 179 868 184 C859 190 847 188 841 180 C835 172 836 166 842 164 Z"/>
+      <line x1="873" y1="163" x2="873" y2="124"/>
+      <path d="M967 177 C978 169 990 168 998 175 C1004 182 1002 192 993 197 C984 203 972 201 966 193 C960 185 961 179 967 177 Z"/>
+      <line x1="998" y1="176" x2="998" y2="136"/>
+      <circle class="cursor-dot" cx="36" cy="65" r="2.3"/>
+    </g>
+  </svg>
+</div>
 
 <footer>
   <div>© mmxxv <em>a. macmillan</em></div>
