@@ -29,6 +29,7 @@ html{scroll-behavior:smooth}
 body{
   background:linear-gradient(-45deg, #f4f0e6, #f7f5ef, #ede6d3, #f4f0e6);
   background-size:400% 400%;
+  background-attachment:fixed;
   animation:gradientShift 25s ease infinite;
   color:var(--ink);
   font-family:'EB Garamond',serif;
@@ -38,6 +39,7 @@ body{
   overflow-x:hidden;
   letter-spacing:0.02em;
   position:relative;
+  min-height:100vh;
 }
 @keyframes gradientShift{
   0%{background-position:0% 50%}
@@ -513,6 +515,56 @@ h2 em{font-style:italic;background:linear-gradient(135deg, var(--sky), var(--sky
 .exp-right p{color:var(--ink-soft);font-size:0.98rem;line-height:1.8;text-shadow:0 0 8px rgba(74,123,167,0.05)}
 .scribble-exp{position:absolute;top:15%;right:3%;width:200px;height:200px;z-index:1;opacity:0.5;animation:floatY 7s ease-in-out infinite}
 
+.scribble-score{
+  position:relative;
+  width:min(1100px,92vw);
+  height:190px;
+  margin:-1.1rem auto 0.35rem;
+  opacity:0.42;
+  z-index:2;
+}
+.scribble-score line,
+.scribble-score path{
+  fill:none;
+  stroke:var(--ink);
+  stroke-width:1.1;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  opacity:0.8;
+}
+.scribble-score .cursor-dot{
+  fill:var(--ink);
+  opacity:0.85;
+}
+
+.chaos-footer{
+  position:relative;
+  width:100%;
+  height:290px;
+  margin:-0.95rem auto 0;
+  overflow:hidden;
+  opacity:0.4;
+  pointer-events:none;
+  z-index:1;
+  mix-blend-mode:multiply;
+}
+.chaos-footer svg{
+  width:100%;
+  height:100%;
+  display:block;
+}
+.chaos-footer path,
+.chaos-footer line,
+.chaos-footer circle,
+.chaos-footer rect{
+  fill:none;
+  stroke:var(--ink);
+  stroke-width:0.95;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  opacity:0.7;
+}
+
 #contact{text-align:center;padding:6rem 2.5rem 4rem;position:relative;overflow:hidden;scroll-margin-top:8rem}
 .contact-eyebrow{font-family:'JetBrains Mono',monospace;font-size:0.7rem;letter-spacing:0.35em;color:var(--muted);margin-bottom:2rem;display:flex;justify-content:center;align-items:center;gap:1rem;text-shadow:0 0 8px rgba(74,123,167,0.08)}
 .contact-eyebrow::before,.contact-eyebrow::after{content:'';display:block;width:40px;height:1px;background:var(--ink);opacity:0.4}
@@ -902,6 +954,81 @@ footer .right{text-align:right}
     <div class="contact-coords">55.9533° n &nbsp;·&nbsp; 3.1883° w &nbsp;·&nbsp; edinburgh · scotland</div>
   </div>
 </section>
+
+<div class="scribble-score delay-1 speed-2" aria-hidden="true">
+  <svg viewBox="0 0 1200 190">
+    <g class="cursor-group">
+      <line x1="12" y1="46" x2="1188" y2="46"/>
+      <line x1="12" y1="58" x2="1188" y2="58"/>
+      <line x1="12" y1="70" x2="1188" y2="70"/>
+      <line x1="12" y1="82" x2="1188" y2="82"/>
+      <line x1="12" y1="94" x2="1188" y2="94"/>
+      <path d="M28 102 C18 89 18 67 30 53 C39 43 52 45 55 58 C57 68 49 76 39 78 C28 80 20 71 22 60 C26 37 51 25 74 30"/>
+      <circle class="cursor-dot" cx="36" cy="65" r="2.3"/>
+    </g>
+  </svg>
+</div>
+
+<div class="chaos-footer" aria-hidden="true">
+  <svg viewBox="0 0 1600 290">
+    <g class="chaos-layer layer-1">
+      <circle cx="112" cy="96" r="30"/>
+      <line x1="82" y1="96" x2="142" y2="96"/>
+      <line x1="112" y1="66" x2="112" y2="126"/>
+      <circle cx="246" cy="58" r="18"/>
+      <rect x="290" y="36" width="78" height="46"/>
+      <line x1="330" y1="24" x2="330" y2="100"/>
+      <rect x="414" y="48" width="62" height="28"/>
+      <circle cx="526" cy="68" r="20"/>
+      <line x1="512" y1="54" x2="540" y2="82"/>
+      <line x1="540" y1="54" x2="512" y2="82"/>
+      <rect x="1084" y="36" width="86" height="48"/>
+      <circle cx="1236" cy="58" r="22"/>
+      <line x1="1214" y1="58" x2="1258" y2="58"/>
+      <line x1="1236" y1="36" x2="1236" y2="80"/>
+      <rect x="1324" y="44" width="70" height="36"/>
+      <circle cx="1472" cy="84" r="26"/>
+      <path d="M1440 84 H1504"/>
+      <path d="M1472 58 V110"/>
+    </g>
+    <g class="chaos-layer layer-2">
+      <circle cx="168" cy="204" r="38"/>
+      <circle cx="168" cy="204" r="18"/>
+      <line x1="130" y1="204" x2="206" y2="204"/>
+      <line x1="168" y1="166" x2="168" y2="242"/>
+      <circle cx="312" cy="156" r="24"/>
+      <path d="M288 156 H336"/>
+      <path d="M312 132 V180"/>
+      <circle cx="1306" cy="178" r="34"/>
+      <circle cx="1306" cy="178" r="15"/>
+      <path d="M1272 178 H1340"/>
+      <path d="M1306 144 V212"/>
+      <circle cx="1450" cy="146" r="22"/>
+      <rect x="1416" y="182" width="82" height="38"/>
+    </g>
+    <g class="chaos-layer layer-3">
+      <circle cx="804" cy="132" r="18"/>
+      <circle cx="804" cy="132" r="46"/>
+      <circle cx="804" cy="132" r="78"/>
+      <circle cx="804" cy="132" r="110"/>
+      <line x1="694" y1="132" x2="914" y2="132"/>
+      <line x1="804" y1="22" x2="804" y2="242"/>
+    </g>
+    <g class="chaos-layer layer-4">
+      <rect x="0" y="40" width="1600" height="10"/>
+      <rect x="0" y="88" width="1600" height="8"/>
+      <rect x="0" y="136" width="1600" height="6"/>
+      <rect x="0" y="186" width="1600" height="9"/>
+      <rect x="0" y="232" width="1600" height="7"/>
+    </g>
+    <g class="chaos-layer layer-5">
+      <path d="M40 34 L64 18 L92 24 L76 48 Z"/>
+      <path d="M1508 38 L1534 18 L1560 26 L1542 52 Z"/>
+      <circle cx="210" cy="78" r="6"/>
+      <circle cx="416" cy="208" r="7"/>
+    </g>
+  </svg>
+</div>
 
 <footer>
   <div>© mmxxv <em>a. macmillan</em></div>
