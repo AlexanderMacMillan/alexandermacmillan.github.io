@@ -9,16 +9,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
 :root{
-  --paper:#f5f1e4;
-  --paper-warm:#efe7d2;
-  --ink:#263020;
-  --ink-soft:#59624a;
-  --muted:#8d8e74;
-  --sky:#d2a83b;
-  --leaf:#5d7b4b;
-  --nav-bg:rgba(245,241,228,0.9);
-  --blue-tint:rgba(210,168,59,0.06);
-  --leaf-tint:rgba(93,123,75,0.08);
+  --paper:#f6f4ee;
+  --paper-warm:#eeebe2;
+  --ink:#2b342f;
+  --ink-soft:#66736b;
+  --muted:#97a19b;
+  --sky:#8fb8cf;
+  --leaf:#8cab8a;
+  --nav-bg:rgba(246,244,238,0.9);
+  --blue-tint:rgba(143,184,207,0.08);
+  --leaf-tint:rgba(140,171,138,0.08);
   --line-strong:rgba(0,0,0,0.2);
   --line-soft:rgba(0,0,0,0.15);
   --line-faint:rgba(0,0,0,0.06);
@@ -27,9 +27,10 @@
 html{scroll-behavior:smooth}
 body{
   background:
-    radial-gradient(circle at top right, rgba(210,168,59,0.12), transparent 30%),
-    radial-gradient(circle at 20% 15%, rgba(93,123,75,0.12), transparent 28%),
-    linear-gradient(180deg, var(--paper-warm) 0%, var(--paper) 55%, color-mix(in srgb, var(--paper) 88%, var(--leaf) 12%) 100%);
+    radial-gradient(circle at top right, rgba(143,184,207,0.14), transparent 32%),
+    radial-gradient(circle at 18% 14%, rgba(140,171,138,0.12), transparent 30%),
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,0.18), transparent 26%),
+    linear-gradient(180deg, var(--paper-warm) 0%, var(--paper) 56%, color-mix(in srgb, var(--paper) 90%, var(--leaf) 10%) 100%);
   color:var(--ink);
   font-family:'EB Garamond',serif;
   font-weight:400;
@@ -85,7 +86,7 @@ body, nav, #skills, #experience, footer, #sound-toggle,
 }
 .scribble path{
   fill:none;
-  stroke:var(--leaf);
+  stroke:var(--ink-soft);
   stroke-width:1.15;
   stroke-linecap:square;
   stroke-linejoin:miter;
@@ -145,7 +146,7 @@ body, nav, #skills, #experience, footer, #sound-toggle,
 }
 #cursor-scribble-line{
   fill:none;
-  stroke:var(--leaf);
+  stroke:var(--sky);
   stroke-width:2.2;
   stroke-linecap:square;
   stroke-linejoin:miter;
@@ -154,7 +155,7 @@ body, nav, #skills, #experience, footer, #sound-toggle,
   image-rendering:pixelated;
 }
 #cursor-scribble-head{
-  fill:var(--leaf);
+  fill:var(--sky);
   opacity:0.9;
   shape-rendering:crispEdges;
 }
@@ -168,7 +169,7 @@ body, nav, #skills, #experience, footer, #sound-toggle,
   transition:all 0.3s;box-shadow:0 2px 10px rgba(0,0,0,0.08);
 }
 #sound-toggle:hover{background:var(--ink);color:var(--paper)}
-#sound-toggle.playing{background:var(--leaf);color:var(--paper);border-color:var(--leaf)}
+#sound-toggle.playing{background:var(--sky);color:var(--paper);border-color:var(--sky)}
 #sound-toggle .wave{display:inline-flex;gap:2px;align-items:center;height:14px}
 #sound-toggle .wave span{
   display:block;width:2px;background:currentColor;
@@ -199,7 +200,7 @@ nav{
   font-family:'JetBrains Mono',monospace;font-weight:300;
   transition:color 0.3s;
 }
-.nav-links a:hover{color:var(--leaf)}
+.nav-links a:hover{color:var(--sky)}
 
 #hero{
   min-height:100vh;padding:8rem 2.5rem 4rem;
@@ -252,7 +253,7 @@ h1 em{font-family:'EB Garamond',serif;font-style:italic;font-weight:400;color:va
 }
 .hero-image .img-wrap{
   width:100%;aspect-ratio:4/5;overflow:hidden;
-  position:relative;background:#a9bc8c;
+  position:relative;background:#bfd2d8;
 }
 .hero-image .img-wrap img{
   width:100%;height:100%;object-fit:cover;
@@ -306,7 +307,7 @@ h2 em{font-style:italic;color:var(--sky)}
 .about-text p{margin-bottom:1.3rem;font-size:1.1rem;line-height:1.8;color:var(--ink)}
 .about-text p strong{font-weight:500;color:var(--sky);font-style:italic}
 .about-image{grid-column:3;position:relative;padding-top:2rem}
-.about-image .img{aspect-ratio:1/1;position:relative;overflow:hidden;background:#a6b88f}
+.about-image .img{aspect-ratio:1/1;position:relative;overflow:hidden;background:#c5d2c3}
 .about-image .img img{width:100%;height:100%;object-fit:cover;}
 .about-image .img::after{
   content:none;
@@ -354,9 +355,9 @@ h2 em{font-style:italic;color:var(--sky)}
 }
 .project-meta .dot{color:var(--sky)}
 .project-visual{grid-column:2;position:relative}
-.project-visual .img{width:100%;aspect-ratio:5/6;position:relative;overflow:hidden;background:#5f7341}
+.project-visual .img{width:100%;aspect-ratio:5/6;position:relative;overflow:hidden;background:#8fa39a}
 .project-visual .img.sdp-photo{
-  background:#d9c85b;
+  background:#c9d7bf;
 }
 .project-visual .img.sdp-photo .cad-card{
   position:absolute;
@@ -401,7 +402,7 @@ h2 em{font-style:italic;color:var(--sky)}
   position:relative;
   z-index:2;
   border:1px solid var(--line-strong);
-  background:rgba(52,66,40,0.22);
+  background:rgba(246,244,238,0.16);
   padding:0.8rem 0.95rem;
   backdrop-filter:blur(2px);
 }
@@ -560,10 +561,10 @@ h2 em{font-style:italic;color:var(--sky)}
   height:270px;
   margin:-0.3rem auto 0;
   overflow:hidden;
-  opacity:0.58;
+  opacity:0.52;
   pointer-events:none;
   z-index:1;
-  background:linear-gradient(180deg, transparent 0%, rgba(93,123,75,0.08) 100%);
+  background:linear-gradient(180deg, transparent 0%, rgba(143,184,207,0.08) 60%, rgba(140,171,138,0.08) 100%);
 }
 .chaos-footer svg{
   width:100%;
@@ -585,7 +586,7 @@ h2 em{font-style:italic;color:var(--sky)}
 .chaos-footer polyline,
 .chaos-footer ellipse{
   fill:none;
-  stroke:var(--leaf);
+  stroke:var(--ink-soft);
   stroke-width:0.95;
   stroke-linecap:square;
   stroke-linejoin:miter;
@@ -598,16 +599,16 @@ h2 em{font-style:italic;color:var(--sky)}
   stroke:var(--sky);
 }
 .chaos-footer .flower-core{
-  stroke:var(--ink);
+  stroke:var(--leaf);
 }
 .chaos-footer .seed,
 .chaos-footer .drift-grass{
-  stroke:var(--ink-soft);
-  opacity:0.6;
+  stroke:var(--leaf);
+  opacity:0.52;
 }
 .chaos-footer .glow-line{
   stroke:var(--sky);
-  opacity:0.22;
+  opacity:0.3;
 }
 @keyframes meadow-sway{
   0%{transform:translateX(-6px) rotate(-0.8deg)}
@@ -1335,16 +1336,16 @@ function updateScrollTheme(){
   const eased = localProgress * localProgress * (3 - 2 * localProgress);
   const themeProgress = Math.min(1, eased * 1.02);
 
-  root.style.setProperty('--paper', mixColor([245,241,228], [10,10,8], themeProgress));
-  root.style.setProperty('--paper-warm', mixColor([239,231,210], [20,18,14], themeProgress));
-  root.style.setProperty('--ink', mixColor([38,48,32], [248,246,238], themeProgress));
-  root.style.setProperty('--ink-soft', mixColor([89,98,74], [218,216,206], themeProgress));
-  root.style.setProperty('--muted', mixColor([141,142,116], [190,190,176], themeProgress));
-  root.style.setProperty('--sky', mixColor([210,168,59], [244,229,159], themeProgress));
-  root.style.setProperty('--leaf', mixColor([93,123,75], [215,234,205], themeProgress));
-  root.style.setProperty('--nav-bg', mixRgba([245,241,228,0.9], [10,10,8,0.92], themeProgress));
-  root.style.setProperty('--blue-tint', mixRgba([210,168,59,0.06], [244,229,159,0.08], themeProgress));
-  root.style.setProperty('--leaf-tint', mixRgba([93,123,75,0.08], [215,234,205,0.08], themeProgress));
+  root.style.setProperty('--paper', mixColor([246,244,238], [10,10,10], themeProgress));
+  root.style.setProperty('--paper-warm', mixColor([238,235,226], [20,20,18], themeProgress));
+  root.style.setProperty('--ink', mixColor([43,52,47], [246,246,240], themeProgress));
+  root.style.setProperty('--ink-soft', mixColor([102,115,107], [214,220,216], themeProgress));
+  root.style.setProperty('--muted', mixColor([151,161,155], [188,196,192], themeProgress));
+  root.style.setProperty('--sky', mixColor([143,184,207], [212,234,244], themeProgress));
+  root.style.setProperty('--leaf', mixColor([140,171,138], [214,232,210], themeProgress));
+  root.style.setProperty('--nav-bg', mixRgba([246,244,238,0.9], [10,10,10,0.92], themeProgress));
+  root.style.setProperty('--blue-tint', mixRgba([143,184,207,0.08], [212,234,244,0.08], themeProgress));
+  root.style.setProperty('--leaf-tint', mixRgba([140,171,138,0.08], [214,232,210,0.08], themeProgress));
   root.style.setProperty('--line-strong', mixRgba([0,0,0,0.2], [255,255,255,0.22], themeProgress));
   root.style.setProperty('--line-soft', mixRgba([0,0,0,0.15], [255,255,255,0.18], themeProgress));
   root.style.setProperty('--line-faint', mixRgba([0,0,0,0.06], [255,255,255,0.12], themeProgress));
