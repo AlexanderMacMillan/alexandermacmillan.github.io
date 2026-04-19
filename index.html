@@ -352,6 +352,72 @@ h2 em{font-style:italic;color:var(--sky)}
 .project-meta .dot{color:var(--sky)}
 .project-visual{grid-column:2;position:relative}
 .project-visual .img{width:100%;aspect-ratio:5/6;position:relative;overflow:hidden;background:#3d4f28}
+.project-visual .img.sdp-photo{
+  background:#d7c96d;
+}
+.project-visual .img.sdp-photo .cad-card{
+  position:absolute;
+  left:1.25rem;
+  bottom:1.25rem;
+  background:rgba(0,0,0,0.22);
+}
+.project-visual .img.placeholder-cad{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0)),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(135deg, rgba(74,123,167,0.16), rgba(0,0,0,0.08));
+  background-size:auto, 28px 28px, 28px 28px, auto;
+  border:1px solid var(--line-soft);
+  display:flex;
+  align-items:flex-end;
+  padding:1.25rem;
+}
+.project-visual .img.placeholder-cad::before{
+  content:'';
+  position:absolute;
+  inset:12% 10% auto auto;
+  width:44%;
+  height:44%;
+  border:1px solid var(--line-strong);
+  box-shadow:
+    -42px 56px 0 -1px var(--line-soft),
+    -84px 112px 0 -1px var(--line-soft);
+  transform:rotate(-8deg);
+  opacity:0.55;
+}
+.project-visual .img.placeholder-cad::after{
+  content:'';
+  position:absolute;
+  inset:auto 12% 16% 14%;
+  height:1px;
+  background:repeating-linear-gradient(90deg, var(--ink) 0 8px, transparent 8px 16px);
+  opacity:0.28;
+}
+.cad-card{
+  position:relative;
+  z-index:2;
+  border:1px solid var(--line-strong);
+  background:rgba(0,0,0,0.12);
+  padding:0.8rem 0.95rem;
+  backdrop-filter:blur(2px);
+}
+.cad-card .cad-small{
+  display:block;
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.62rem;
+  letter-spacing:0.22em;
+  color:var(--muted);
+  margin-bottom:0.45rem;
+}
+.cad-card .cad-big{
+  display:block;
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.45rem;
+  font-style:italic;
+  color:var(--ink);
+  line-height:1.05;
+}
 .project-visual .img img{width:100%;height:100%;object-fit:cover;}
 .project-visual .img::after{
   content:none;
@@ -431,7 +497,7 @@ h2 em{font-style:italic;color:var(--sky)}
   position:relative;
   width:min(1100px,92vw);
   height:190px;
-  margin:0 auto 1.5rem;
+  margin:-1.1rem auto 0.35rem;
   opacity:0.42;
   z-index:2;
 }
@@ -485,6 +551,125 @@ h2 em{font-style:italic;color:var(--sky)}
 .scribble-score .note-8{animation-delay:3.15s}
 .scribble-score .note-9{animation-delay:3.6s}
 .scribble-score .note-10{animation-delay:4.05s}
+.chaos-footer{
+  position:relative;
+  width:100%;
+  height:290px;
+  margin:-0.95rem auto 0;
+  overflow:hidden;
+  opacity:0.44;
+  pointer-events:none;
+  z-index:1;
+  mix-blend-mode:screen;
+}
+.chaos-footer svg{
+  width:100%;
+  height:100%;
+  display:block;
+  shape-rendering:crispEdges;
+  image-rendering:pixelated;
+}
+.chaos-footer .chaos-layer{
+  transform-origin:center;
+  animation:chaos-drift 12s steps(22, end) infinite alternate;
+}
+.chaos-footer .layer-2{
+  animation-duration:9s;
+  animation-direction:alternate-reverse;
+  opacity:0.9;
+}
+.chaos-footer .layer-3{
+  animation-duration:14s;
+  opacity:0.82;
+}
+.chaos-footer .layer-4{
+  animation:chaos-jitter 1.8s steps(4, end) infinite;
+  opacity:0.34;
+}
+.chaos-footer .layer-5{
+  animation:chaos-jitter 0.9s steps(3, end) infinite reverse;
+  opacity:0.2;
+}
+.chaos-footer path,
+.chaos-footer line,
+.chaos-footer circle,
+.chaos-footer polyline,
+.chaos-footer rect{
+  fill:none;
+  stroke:var(--ink);
+  stroke-width:0.95;
+  stroke-linecap:square;
+  stroke-linejoin:miter;
+  vector-effect:non-scaling-stroke;
+  shape-rendering:crispEdges;
+}
+.chaos-footer .thin-stroke{stroke-width:0.65}
+.chaos-footer .thick-stroke{stroke-width:1.35}
+.chaos-footer .scan-line{
+  stroke:var(--sky);
+  stroke-width:1.35;
+  opacity:0.46;
+  animation:scan-pulse 3.8s steps(10, end) infinite;
+}
+.chaos-footer .center-noise{
+  animation:noise-breathe 4.8s steps(12, end) infinite;
+  transform-origin:center;
+}
+.chaos-footer .glitch-slice{
+  opacity:0.26;
+  animation:slice-glitch 2.4s steps(6, end) infinite;
+}
+.chaos-footer .ghost-line{
+  stroke:var(--sky);
+  opacity:0.16;
+}
+.chaos-footer .flicker-node{
+  animation:node-flicker 1.6s steps(3, end) infinite;
+}
+.chaos-footer .microtext{
+  font-family:'JetBrains Mono',monospace;
+  font-size:8px;
+  letter-spacing:0.28em;
+  fill:var(--ink);
+  opacity:0.42;
+}
+.chaos-footer .microtext.alt{
+  fill:var(--sky);
+  opacity:0.22;
+}
+@keyframes chaos-drift{
+  0%{transform:translate3d(-8px,-2px,0)}
+  50%{transform:translate3d(4px,3px,0)}
+  100%{transform:translate3d(10px,-4px,0)}
+}
+@keyframes chaos-jitter{
+  0%{transform:translate(0,0)}
+  25%{transform:translate(3px,-2px)}
+  50%{transform:translate(-2px,2px)}
+  75%{transform:translate(4px,1px)}
+  100%{transform:translate(-3px,-1px)}
+}
+@keyframes scan-pulse{
+  0%,100%{opacity:0.08}
+  50%{opacity:0.72}
+}
+@keyframes noise-breathe{
+  0%,100%{opacity:0.42;transform:scale(0.975)}
+  50%{opacity:0.9;transform:scale(1.035)}
+}
+@keyframes slice-glitch{
+  0%,100%{transform:translate(0,0);opacity:0.16}
+  20%{transform:translate(8px,0);opacity:0.32}
+  40%{transform:translate(-6px,1px);opacity:0.12}
+  60%{transform:translate(11px,-1px);opacity:0.28}
+  80%{transform:translate(-4px,0);opacity:0.18}
+}
+@keyframes node-flicker{
+  0%,100%{opacity:0.18}
+  35%{opacity:0.92}
+  55%{opacity:0.22}
+  72%{opacity:0.76}
+}
 @keyframes note-play{
   0%,100%{opacity:0.18;transform:translateY(0) scale(1)}
   8%{opacity:1;transform:translateY(-3px) scale(1.12)}
@@ -496,7 +681,7 @@ h2 em{font-style:italic;color:var(--sky)}
   16%{opacity:0;transform:scale(1)}
 }
 
-#contact{text-align:center;padding:10rem 2.5rem;position:relative;overflow:hidden}
+#contact{text-align:center;padding:4.25rem 2.5rem 3.75rem;position:relative;overflow:hidden;scroll-margin-top:8rem}
 .contact-eyebrow{font-family:'JetBrains Mono',monospace;font-size:0.7rem;letter-spacing:0.35em;color:var(--muted);margin-bottom:2rem;display:flex;justify-content:center;align-items:center;gap:1rem}
 .contact-eyebrow::before,.contact-eyebrow::after{content:'';display:block;width:40px;height:1px;background:var(--ink)}
 .contact-big{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,10vw,8rem);font-weight:300;line-height:1;letter-spacing:-0.03em;margin-bottom:2rem}
@@ -525,7 +710,7 @@ h2 em{font-style:italic;color:var(--sky)}
 }
 .scribble-contact{position:absolute;top:50%;left:50%;transform:translate(-50%,-30%);width:500px;height:400px;z-index:0;opacity:0.35}
 .contact-inner{position:relative;z-index:2}
-.contact-coords{margin-top:4rem;font-family:'JetBrains Mono',monospace;font-size:0.7rem;letter-spacing:0.2em;color:var(--muted)}
+.contact-coords{margin-top:3rem;font-family:'JetBrains Mono',monospace;font-size:0.7rem;letter-spacing:0.2em;color:var(--muted)}
 
 footer{
   padding:3rem 2.5rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;
@@ -560,6 +745,7 @@ footer .right{text-align:right}
   #sound-toggle{bottom:1rem;right:1rem;width:42px;height:42px}
   .contact-links{flex-direction:column;gap:0.8rem}
   .contact-divider{display:none}
+  .chaos-footer{display:none}
 }
 </style>
 </head>
@@ -722,7 +908,7 @@ footer .right{text-align:right}
       <div class="skill-group">
         <h4>Frameworks</h4>
         <div class="suffix">— structures I build on</div>
-        <ul><li>Spring Boot</li><li>JUnit &amp; AssertJ</li><li>Maven</li><li>Docker</li><li>QEMU</li></ul>
+        <ul><li>Spring Boot</li><li>JUnit &amp; AssertJ</li><li>Maven</li><li>Docker</li><li>QEMU</li><li>Fusion 360</li></ul>
       </div>
       <div class="skill-group">
         <h4>Data</h4>
@@ -732,7 +918,7 @@ footer .right{text-align:right}
       <div class="skill-group">
         <h4>Ideas</h4>
         <div class="suffix">— things I keep returning to</div>
-        <ul><li>Operating systems</li><li>Networking protocols</li><li>REST API design</li><li>Functional programming</li><li>Numerical methods</li></ul>
+        <ul><li>Operating systems</li><li>Networking protocols</li><li>REST API design</li><li>3D modelling &amp; CAD</li><li>Numerical methods</li></ul>
       </div>
     </div>
   </div>
@@ -750,7 +936,7 @@ footer .right{text-align:right}
   <div class="section-header">
     <div class="section-num"><span class="arrow">❋</span>§ 04</div>
     <h2>Selected<br><em>Work.</em></h2>
-    <div class="section-caption">three projects I'm still proud of — each a small window into what I was trying to understand at the time.</div>
+    <div class="section-caption">four projects I'm still proud of — each a small window into what I was trying to understand at the time.</div>
   </div>
 
   <div class="project">
@@ -879,6 +1065,25 @@ footer .right{text-align:right}
         <circle class="cursor-dot" cx="206" cy="243" r="2.8"/>
       </g>
     </svg>
+  </div>
+  <div class="project">
+    <div class="project-meta">feat. iv · mmxxv · systems design</div>
+    <div class="project-visual">
+      <div class="img sdp-photo">
+        <img src="images/sunflower.png" alt="sunflower in a field" loading="lazy"/>
+        <div class="cad-card">
+          <span class="cad-small">fusion 360 · prototyping · sdp</span>
+          <span class="cad-big">curbie / bin base<br>cad study</span>
+        </div>
+      </div>
+    </div>
+    <div class="project-body">
+      <div class="project-tag">— feature 04</div>
+      <h3>Curbie: Autonomous<br><em>Bin Collection System.</em></h3>
+      <p>A System Design Project centred on building an autonomous bin collection system in which a TurtleBot 3 could dock with low-cost passive bin bases, guide itself using ArUco markers, and support repeatable collection routes. What made the project especially interesting was the way software, sensing, and mechanical design all depended on one another: the robot could only behave reliably if the physical base geometry, docking tolerances, and attachment points were designed with the software constraints in mind.</p>
+      <p>My contribution focused heavily on the hardware and CAD side. Using Fusion 360, I designed and iterated the passive bin base, docking slot, and elements of the robot cover, while working around real fabrication limits such as print volume, material cost, and structural weakness across split parts. That meant redesigning components to reduce material use, simplifying shapes so they could be reproduced cheaply, and moving towards a more modular approach when the project evolved. It was one of the clearest examples I've had of CAD as an engineering tool rather than just a drawing tool: modelling for fit, assembly, manufacture, and integration, not only appearance.</p>
+      <div class="project-stack"><span>Fusion 360</span><span>3D Modelling</span><span>CAD</span><span>TurtleBot 3</span><span>ArUco</span><span>Prototyping</span></div>
+    </div>
   </div>
 </section>
 
@@ -1081,6 +1286,139 @@ footer .right{text-align:right}
   </svg>
 </div>
 
+<div class="chaos-footer" aria-hidden="true">
+  <svg viewBox="0 0 1600 290">
+    <g class="chaos-layer layer-1">
+      <circle cx="112" cy="96" r="30"/>
+      <line x1="82" y1="96" x2="142" y2="96"/>
+      <line x1="112" y1="66" x2="112" y2="126"/>
+      <circle cx="246" cy="58" r="18"/>
+      <rect x="290" y="36" width="78" height="46"/>
+      <line x1="330" y1="24" x2="330" y2="100"/>
+      <rect x="414" y="48" width="62" height="28"/>
+      <circle cx="526" cy="68" r="20"/>
+      <line x1="512" y1="54" x2="540" y2="82"/>
+      <line x1="540" y1="54" x2="512" y2="82"/>
+      <rect x="1084" y="36" width="86" height="48"/>
+      <circle cx="1236" cy="58" r="22"/>
+      <line x1="1214" y1="58" x2="1258" y2="58"/>
+      <line x1="1236" y1="36" x2="1236" y2="80"/>
+      <rect x="1324" y="44" width="70" height="36"/>
+      <circle cx="1472" cy="84" r="26"/>
+      <path d="M1440 84 H1504"/>
+      <path d="M1472 58 V110"/>
+      <path d="M86 178 H336"/>
+      <path d="M1140 178 H1510"/>
+      <path d="M52 232 H198"/>
+      <path d="M1396 232 H1544"/>
+      <path d="M590 18 V256"/>
+      <path d="M1012 12 V270"/>
+      <path d="M708 10 V264"/>
+      <path d="M890 8 V272"/>
+      <path class="thin-stroke" d="M0 144 H1600"/>
+      <path class="thin-stroke" d="M0 145 H1600"/>
+    </g>
+    <g class="chaos-layer layer-2">
+      <circle cx="168" cy="204" r="38"/>
+      <circle cx="168" cy="204" r="18"/>
+      <line x1="130" y1="204" x2="206" y2="204"/>
+      <line x1="168" y1="166" x2="168" y2="242"/>
+      <circle cx="312" cy="156" r="24"/>
+      <path d="M288 156 H336"/>
+      <path d="M312 132 V180"/>
+      <circle cx="1306" cy="178" r="34"/>
+      <circle cx="1306" cy="178" r="15"/>
+      <path d="M1272 178 H1340"/>
+      <path d="M1306 144 V212"/>
+      <circle cx="1450" cy="146" r="22"/>
+      <rect x="1416" y="182" width="82" height="38"/>
+      <path d="M1388 106 C1410 92 1432 90 1456 96"/>
+      <path d="M1420 122 C1442 114 1466 114 1490 120"/>
+      <path d="M112 42 C140 34 168 36 196 44"/>
+      <path d="M104 60 C138 54 174 56 208 66"/>
+      <path d="M262 218 C284 198 310 192 342 198"/>
+      <path d="M1268 220 C1294 200 1326 196 1356 202"/>
+      <rect x="468" y="144" width="94" height="56"/>
+      <circle cx="468" cy="144" r="14"/>
+      <circle cx="562" cy="200" r="14"/>
+      <line x1="468" y1="144" x2="562" y2="200"/>
+      <rect x="1026" y="150" width="106" height="60"/>
+      <circle cx="1026" cy="210" r="16"/>
+      <circle cx="1132" cy="150" r="16"/>
+      <line x1="1026" y1="210" x2="1132" y2="150"/>
+    </g>
+    <g class="chaos-layer layer-3 center-noise">
+      <polyline points="620,20 654,44 682,78 706,118 724,142 752,126 780,92 806,64 836,40 868,28"/>
+      <polyline points="606,42 644,72 682,110 716,146 752,168 790,150 830,114 862,82 894,54 926,40"/>
+      <polyline points="594,68 632,98 676,136 718,168 764,186 808,172 848,142 886,110 922,84 956,68"/>
+      <polyline points="610,104 650,120 694,146 736,174 780,194 824,188 872,170 914,146 952,122 988,102"/>
+      <polyline points="598,132 640,146 688,170 734,196 784,216 836,208 886,190 934,168 980,142 1020,118"/>
+      <polyline points="632,18 664,60 688,108 704,148 726,190 748,230"/>
+      <polyline points="704,10 724,58 742,102 760,152 774,206 786,250"/>
+      <polyline points="780,8 784,56 792,104 802,154 816,212 826,260"/>
+      <polyline points="852,14 846,58 840,104 834,152 826,214 818,266"/>
+      <polyline points="932,20 906,60 882,100 854,144 830,194 806,240"/>
+      <polyline points="986,34 948,72 910,110 874,150 840,196 802,242"/>
+      <polyline points="658,92 706,84 752,86 802,94 850,108 892,126 934,150"/>
+      <polyline points="646,146 694,136 744,134 794,138 844,150 892,170 938,194"/>
+      <polyline points="652,188 702,182 752,180 806,184 858,194 908,206 954,220"/>
+      <polyline points="690,38 734,72 780,112 826,156 874,196 924,226"/>
+      <polyline points="928,38 888,76 844,116 800,160 756,202 714,236"/>
+      <circle cx="804" cy="132" r="18"/>
+      <circle cx="804" cy="132" r="46"/>
+      <circle cx="804" cy="132" r="78"/>
+      <circle cx="804" cy="132" r="110" class="thin-stroke"/>
+      <line x1="694" y1="132" x2="914" y2="132"/>
+      <line x1="804" y1="22" x2="804" y2="242"/>
+      <line x1="748" y1="76" x2="860" y2="188" class="ghost-line"/>
+      <line x1="860" y1="76" x2="748" y2="188" class="ghost-line"/>
+    </g>
+    <g class="chaos-layer layer-4 glitch-slice">
+      <rect x="0" y="40" width="1600" height="10"/>
+      <rect x="0" y="88" width="1600" height="8"/>
+      <rect x="0" y="136" width="1600" height="6"/>
+      <rect x="0" y="186" width="1600" height="9"/>
+      <rect x="0" y="232" width="1600" height="7"/>
+      <line x1="0" y1="44" x2="1600" y2="44" class="ghost-line"/>
+      <line x1="0" y1="189" x2="1600" y2="189" class="ghost-line"/>
+    </g>
+    <g class="chaos-layer layer-5">
+      <path d="M40 34 L64 18 L92 24 L76 48 Z"/>
+      <path d="M1508 38 L1534 18 L1560 26 L1542 52 Z"/>
+      <path d="M60 114 L98 126 L70 148"/>
+      <path d="M1522 112 L1488 126 L1514 148"/>
+      <path d="M48 238 L76 220 L108 228"/>
+      <path d="M1492 234 L1526 218 L1556 226"/>
+      <circle cx="210" cy="78" r="6" class="flicker-node"/>
+      <circle cx="416" cy="208" r="7" class="flicker-node"/>
+      <circle cx="664" cy="98" r="6" class="flicker-node"/>
+      <circle cx="952" cy="174" r="7" class="flicker-node"/>
+      <circle cx="1204" cy="86" r="6" class="flicker-node"/>
+      <circle cx="1446" cy="212" r="7" class="flicker-node"/>
+      <text class="microtext" x="86" y="18">FIELD 01</text>
+      <text class="microtext alt" x="82" y="30">FRACTURE</text>
+      <text class="microtext" x="1348" y="18">SHIFT NODE</text>
+      <text class="microtext alt" x="1328" y="30">DIVERGENCE</text>
+      <text class="microtext" x="672" y="278">WORLD LINE / TRANSIENT RECORD / ERROR STACK / GATE SIGNAL</text>
+    </g>
+    <g class="chaos-layer layer-2 thin-stroke">
+      <line x1="84" y1="0" x2="84" y2="290"/>
+      <line x1="198" y1="0" x2="198" y2="290"/>
+      <line x1="354" y1="0" x2="354" y2="290"/>
+      <line x1="1182" y1="0" x2="1182" y2="290"/>
+      <line x1="1318" y1="0" x2="1318" y2="290"/>
+      <line x1="1478" y1="0" x2="1478" y2="290"/>
+      <path d="M0 68 H1600"/>
+      <path d="M0 108 H1600"/>
+      <path d="M0 164 H1600"/>
+      <path d="M0 218 H1600"/>
+    </g>
+    <line class="scan-line" x1="800" y1="0" x2="800" y2="290"/>
+    <line class="scan-line" x1="808" y1="0" x2="808" y2="290"/>
+    <line class="scan-line" x1="792" y1="0" x2="792" y2="290"/>
+  </svg>
+</div>
+
 <footer>
   <div>© mmxxv <em>a. macmillan</em></div>
   <div class="center">set in cormorant / eb garamond / jetbrains mono</div>
@@ -1104,10 +1442,11 @@ const mixRgba = (from, to, t) => `rgba(${mixChannel(from[0], to[0], t)}, ${mixCh
 function updateScrollTheme(){
   const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
   const contactTop = contactSection ? contactSection.offsetTop : document.documentElement.scrollHeight * 0.78;
-  const activationStart = Math.max(0, contactTop - window.innerHeight * 0.78);
-  const activationEnd = Math.min(maxScroll, contactTop + window.innerHeight * 0.45);
+  const activationStart = Math.max(0, contactTop - window.innerHeight * 1.35);
+  const activationEnd = Math.min(maxScroll, contactTop - window.innerHeight * 0.08);
   const localProgress = clamp((window.scrollY - activationStart) / Math.max(activationEnd - activationStart, 1), 0, 1);
-  const themeProgress = localProgress * localProgress * (3 - 2 * localProgress);
+  const eased = localProgress * localProgress * (3 - 2 * localProgress);
+  const themeProgress = Math.min(1, eased * 1.02);
 
   root.style.setProperty('--paper', mixColor([244,240,230], [8,8,8], themeProgress));
   root.style.setProperty('--paper-warm', mixColor([237,230,211], [18,18,18], themeProgress));
